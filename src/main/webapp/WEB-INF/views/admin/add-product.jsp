@@ -90,29 +90,35 @@
 							<form:form action="/hoanghamobile/add-product"
 								modelAttribute="item" class="tm-edit-product-form">
 								<div class="form-group mb-3">
-									<label for="name">Tên Sản Phẩm </label>
-									<form:input id="name" name="name" type="text"
-										path="nameProduct" class="form-control validate" />
-								</div>
-								<div class="form-group mb-3">
-									<label for="name">Giá Sản Phẩm </label>
-									<form:input id="price" name="price" type="number" path="price"
+									<label for="name">Tên Sản Phẩm</label>
+									<form:input id="name" type="text" path="nameProduct"
 										class="form-control validate" />
+									<form:errors path="nameProduct"
+										cssClass="form-text text-danger" />
 								</div>
 								<div class="form-group mb-3">
-									<label for="name">Giá Sale</label>
-									<form:input id="sale" name="sale" type="number" path="sale"
+									<label for="price">Giá Sản Phẩm</label>
+									<form:input id="price" type="number" path="price"
 										class="form-control validate" />
+									<form:errors path="price" cssClass="form-text text-danger" />
 								</div>
 								<div class="form-group mb-3">
-									<label for="name">Số Lượng </label>
-									<form:input id="pty" name="pty" type="number" path="Qty"
+									<label for="sale">Giá Sale</label>
+									<form:input id="sale" type="number" path="sale"
 										class="form-control validate" />
+									<form:errors path="sale" cssClass="form-text text-danger" />
 								</div>
 								<div class="form-group mb-3">
-									<label for="name">Mô Tả Sản Phẩm</label>
-									<form:input id="note" name="note" type="text" path="note"
+									<label for="Qty">Số Lượng</label>
+									<form:input id="Qty" type="number" path="Qty"
+										class="form-control validate" />
+									<form:errors path="Qty" cssClass="form-text text-danger" />
+								</div>
+								<div class="form-group mb-3">
+									<label for="note">Mô Tả Sản Phẩm</label>
+									<form:input id="note" type="text" path="note"
 										class="form-control validate" style="height: 100px" />
+									<form:errors path="note" cssClass="form-text text-danger" />
 								</div>
 								<div class="form-group mb-3">
 									<label for="category">Category</label>
@@ -128,17 +134,16 @@
 						<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 							<div class="tm-product-img-dummy mx-auto">
 								<img id="previewImage" src="#" alt="Preview"
-								style="display: none; max-width: 100%; height: 240px" />
+									style="display: none; max-width: 100%; height: 240px" />
 							</div>
-							
 							<div class="custom-file mt-3 mb-3">
 								<form:input id="fileInput" path="image" type="file"
 									style="display: none;" onchange="displayImage(this);" />
 								<input type="button" class="btn btn-primary btn-block mx-auto"
 									value="UPLOAD PRODUCT IMAGE"
 									onclick="document.getElementById('fileInput').click();" />
+								<form:errors path="image" cssClass="form-text text-danger" />
 							</div>
-
 						</div>
 						<div class="col-12">
 							<button type="submit"
@@ -146,11 +151,6 @@
 								Product Now</button>
 						</div>
 						</form:form>
-
-
-
-
-
 
 
 					</div>
