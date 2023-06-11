@@ -12,9 +12,9 @@ import jakarta.transaction.Transactional;
 
 public interface OrderDetailsRepository extends JpaRepository<OrderDetail, Long>{
 
-//	@Transactional
-//    @Modifying
-//    @Query(value = "INSERT INTO order_table (total,date,status,note,id_client) VALUES (?1,?2,?3,?4,?5)", nativeQuery = true)
-//    void insertOrder(double total, Date date, boolean status, String note, Long iCilent);
+	@Transactional
+    @Modifying
+    @Query(value = "INSERT INTO order_detail (so_luong,tong_gia,id_order,id_product) VALUES (?1,?2,?3,?4)", nativeQuery = true)
+    void insertOrder_Details(int qty, double totalprice, String id_order, Long idProduct);
 	
 }

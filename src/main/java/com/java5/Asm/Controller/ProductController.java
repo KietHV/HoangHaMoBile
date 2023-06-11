@@ -132,9 +132,8 @@ public class ProductController {
 	@RequestMapping("/hoanghamobile/add-product")
 	public String addProduct(@Validated @ModelAttribute("item") Product items, BindingResult result, Model model) {
 	    if (result.hasErrors()) {
-	        // Xử lý khi có lỗi validation
 	        model.addAttribute("validationErrors", result.getAllErrors());
-	        return "admin/add-product"; // Thay thế bằng tên trang hiển thị lỗi của bạn
+	        return "admin/add-product";
 	    }
 	    Date currentDate = new Date();
 	    items.setDate(currentDate);

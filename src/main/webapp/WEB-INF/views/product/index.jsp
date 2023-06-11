@@ -57,7 +57,7 @@
                                         <a class="nav-link" href="#">Tuyển dụng</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Tra cứu đơn hàng</a>
+                                        <a class="nav-link" href="hoanghamobile/tracuudonhang">Tra cứu đơn hàng</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="hoanghamobile/login" >Đăng nhập</a>

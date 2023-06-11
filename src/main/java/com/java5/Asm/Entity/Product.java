@@ -31,7 +31,6 @@ public class Product implements Serializable {
     @Min(value = 0, message = "Giá Sản Phẩm phải là số không âm")
     @NotNull(message = "Giá Sản Phẩm không được để trống")
     private Double price;
-
     @NotBlank(message = "Mô Tả Sản Phẩm không được để trống")
     private String note;
 

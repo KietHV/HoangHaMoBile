@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,17 @@
 <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
+	
+	
 	-->
+
+<script>
+        <% if (request.getAttribute("successMessage") != null) { %>
+            window.onload = function() {
+                alert("<%= request.getAttribute("successMessage") %>");
+            }
+        <% } %>
+    </script>
 </head>
 
 <body>
@@ -97,38 +107,35 @@
 					</div>
 					<div class="row tm-edit-product-row">
 						<div class="col-xl-6 col-lg-6 col-md-12">
-						<form:form action="/hoanghamobile/updateproduct"
-								clas="tm-edit-product-form"  modelAttribute="items" enctype="multipart/form-data">
+							<form:form action="/hoanghamobile/updateproduct"
+								clas="tm-edit-product-form" modelAttribute="items"
+								enctype="multipart/form-data">
 								<div class="form-group mb-3">
 									<label for="name">Max Sản Phẩm </label>
-									 <form:input id="id"
-										name="id" type="text" path="idProduct"
+									<form:input id="id" name="id" type="text" path="idProduct"
 										value="${items.idProduct}" class="form-control validate" />
 								</div>
-						 		<div class="form-group mb-3">
+								<div class="form-group mb-3">
 									<label for="name">Tên Sản Phẩm </label>
-									 <form:input id="name"
-										name="name" type="text" path="nameProduct"
-										value="${items.nameProduct}" class="form-control validate" />
+									<form:input id="name" name="name" type="text"
+										path="nameProduct" value="${items.nameProduct}"
+										class="form-control validate" />
 								</div>
 								<div class="form-group mb-3">
-									<label for="name">Giá Sản Phẩm Mới </label> 
-									<form:input id="price"
-										name="price" type="text" path="price" value="${items.price}"
-										class="form-control validate" />
+									<label for="name">Giá Sản Phẩm Mới </label>
+									<form:input id="price" name="price" type="text" path="price"
+										value="${items.price}" class="form-control validate" />
 								</div>
 								<div class="form-group mb-3">
 									<label for="name">Giảm Giá Sản Phẩm </label>
-									<form:input id="sale"
-										name="sale" type="text" path="sale" value="${items.sale}"
-										class="form-control validate" />
+									<form:input id="sale" name="sale" type="text" path="sale"
+										value="${items.sale}" class="form-control validate" />
 								</div>
 								<div class="form-group mb-3">
 									<label for="description">Mô Tả</label>
-									
-									<form:input id="note"
-										name="note" type="text" path="note" value="${items.note}"
-										class="form-control validate" />
+
+									<form:input id="note" name="note" type="text" path="note"
+										value="${items.note}" class="form-control validate" />
 								</div>
 								<div class="form-group mb-3">
 									<label for="category">Category</label>
@@ -147,29 +154,32 @@
 										class="form-control validate" />
 								</div> --%>
 								<div class="col-12">
-							<button type="submit"
-								class="btn btn-primary btn-block text-uppercase">Update
-								Now</button>
-						</div>
-						
+									<button type="submit"
+										class="btn btn-primary btn-block text-uppercase">Update
+										Now</button>
+								</div>
 						</div>
 						<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 							<div class="tm-product-img-edit mx-auto">
-								<img src="../IMG/${items.image}" id="previewImage" alt="Product image" name="fileInput"
+								<img src="../IMG/${items.image}" id="previewImage"
+									alt="Product image" name="fileInput"
 									class="img-fluid d-block mx-auto"> <i
 									class="fas fa-cloud-upload-alt tm-upload-icon"
 									onclick="document.getElementById('fileInput').click();"></i>
-							</div>	
+							</div>
 							<div class="custom-file mt-3 mb-3">
-								<input id="fileInput" name="fileInput" type="file" onchange="displayImage(this)" value="/IMG/${items.image}" style="display: none;" /> <input
-									type="button" class="btn btn-primary btn-block mx-auto"
-									value="CHANGE IMAGE NOW" formaction="/hoanghamobile/updateproduct"
+								<input id="fileInput" name="fileInput" type="file"
+									onchange="displayImage(this)" value="/IMG/${items.image}"
+									style="display: none;" /> <input type="button"
+									class="btn btn-primary btn-block mx-auto"
+									value="CHANGE IMAGE NOW"
+									formaction="/hoanghamobile/updateproduct"
 									onclick="document.getElementById('fileInput').click();" />
 							</div>
 						</div>
-					
+
 						</form:form>
-						
+
 					</div>
 				</div>
 			</div>
@@ -212,5 +222,12 @@
 			}
 		}
 	</script>
+	<script>
+	  <% if (request.getAttribute("successMessage") != null) { %>
+      window.addEventListener('load', function() {
+          alert('<%= request.getAttribute("successMessage") %>');
+      });
+  <% } %>
+</script>
 </body>
 </html>

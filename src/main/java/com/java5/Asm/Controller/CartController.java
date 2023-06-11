@@ -2,6 +2,7 @@ package com.java5.Asm.Controller;
 
 import java.nio.charset.StandardCharsets;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -32,6 +33,7 @@ import com.java5.Asm.Repository.OrderDetailsRepository;
 import com.java5.Asm.Repository.OrderRepository;
 import com.java5.Asm.Repository.ProductRepository;
 import com.java5.Asm.Service.ShoppingCartService;
+import com.java5.Asm.impl.MailerServicelml;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -60,7 +62,10 @@ public class CartController {
 
 	@Autowired
 	private HttpServletRequest req;
-
+	
+	@Autowired
+	MailerServicelml mailer;
+	
 	private ObjectMapper objectMapper = new ObjectMapper();
 	Cookie cookie = null;
 
@@ -168,24 +173,61 @@ public class CartController {
 		return null;
 	}
 	
+	@RequestMapping("hoanghamobile/carproduct/xacnhandonhang")
+	public String xacnhanDH(Model model , @RequestParam("MaDH") String MaHD) {
+		order.updateDonHang(MaHD);
+		return "redirect:/hoanghamobile/xacnhandonhang";
+	}
+	
 	@RequestMapping("/hoanghamobile/cartproduct/dathang")
 	public String dathang(Model model , Cilent cilent)  {
+		
 		client.save(cilent);
 		Pageable pl = PageRequest.of(0, 1);
-		List<Cilent> clients = client.findName(cilent.getFullName(),pl );
+		List<Cilent> clients = client.findEmail(cilent.getEmail(),pl );
 		if (!clients.isEmpty()) {
 		    cilent  = clients.get(0);
-		    order.insertOrder(cart.getAmount(), new Date(), false, null, cilent.getIdCilent());
+		    List<Order> listOrder = order.findAll();
+		    String idOrderInsert = String.valueOf("HD"+(listOrder.size()+1));
+		    order.insertOrder(idOrderInsert, cart.getAmount(), new Date(), false, null, cilent.getIdCilent());
+		    String productNames = "";
+		    Order od = order.getOrder(idOrderInsert);
+		    for (Product product : cart.getItems()) {
+		    	productNames += product.getNameProduct() + "\n";
+		    	orderDetails.insertOrder_Details(product.getQty(), product.getQty()*product.getPrice(), idOrderInsert, product.getIdProduct());
+			}
+		    Double tong = cart.getAmount();
+		    
+		    //Xóa Cookie
+		    cookie = new Cookie("myCart", "");
+		    cookie.setMaxAge(0);
+		    cookie.setPath("/");
+			resp.addCookie(cookie);
+			cart.clear();
+			// Gửi Email Xác Nhận Đơn hàng
+			try {
+				mailer.send(cilent.getEmail(), "Xác Nhận Đơn Hàng Từ HoangHaMobile", ""
+						+ "Vui Lòng Xác Nhận Đơn Hàng :" + idOrderInsert +
+						"\n Bạn Hãy Ấn Vào Liên Kết Này Để Xác Nhận Đơn Hàng Vừa Mới Đặt Nhé \n"
+						+ "http://localhost:8080/hoanghamobile/carproduct/xacnhandonhang?MaDH="+idOrderInsert +
+						"\n Với Các Sản Phẩm Hiện Có : \n  " +productNames+
+						"\n Tổng Số Tiền :" +tong + "VND");
+			} catch (Exception e) {
+				return e.getMessage();
+			}
+			
 		    // Xử lý kết quả top 1 ở đây
 		} else {
 		    // Không tìm thấy kết quả
 		}
 		
-		
 		return "redirect:/hoanghamobile";
 	}
 	
-	
+	@RequestMapping("/client")
+	public String showForm() {
+		return "product/infoClient";
+	}
 	
 	
 
