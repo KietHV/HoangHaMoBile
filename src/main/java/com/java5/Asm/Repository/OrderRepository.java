@@ -42,6 +42,11 @@ public interface OrderRepository extends JpaRepository<Order, String>{
     
     @Query("SELECT o FROM Order o WHERE o.idOrder = ?1")
 	Order findOrder(String idOrder);
+    
+   
+    
+	@Query("SELECT COUNT(o.idOrder) FROM Order o")
+	int getSLOrder();
 }
 
 	

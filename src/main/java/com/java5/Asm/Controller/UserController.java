@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java5.Asm.Entity.Users;
 import com.java5.Asm.Repository.UserRepository;
@@ -57,6 +58,15 @@ public class UserController {
 		enable.put(true, "Enable");
 		enable.put(false, "Disable");
 		return enable;
+	}
+	
+	@RequestMapping("/hoanghamobile/account/search")
+	public String search(Model model, @RequestParam("search") String keyword) {
+		List<Users> listsearch = dao.findAllByemailContainingIgnoreCase(keyword);
+		model.addAttribute("users",listsearch);
+		model.addAttribute("search", keyword);
+		model.addAttribute("user", new Users());
+		return "admin/account";
 	}
 	
 }

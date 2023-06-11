@@ -18,19 +18,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrderDetail {
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Long idOrderDetail;
-	 @ManyToOne
-	 @JoinColumn(name = "idOrder")
-	 private Order iOrder;
-	 @ManyToOne
-	 @JoinColumn(name = "idProduct")
-	 private Product idProduct;
-	 private int SoLuong;
-	 private double TongGia;
-	 
-	 
-	 
-}
+	public class OrderDetail {
+		 @Id
+		 @GeneratedValue(strategy = GenerationType.IDENTITY)
+		 private Long idOrderDetail;
+		 @ManyToOne
+		 @JoinColumn(name = "idOrder")
+		 private Order iOrder;
+		 @ManyToOne
+		 @JoinColumn(name = "idProduct")
+		 private Product idProduct;
+		 private int SoLuong;
+		 private double TongGia;
+		 
+		 
+		 
+	}

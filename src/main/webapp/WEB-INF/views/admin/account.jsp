@@ -64,7 +64,7 @@
 							<label for="id">Id</label>
 							<form:input path="id"
 								class="form-control validate bg-white text-dark"
-								placeholder="Không được nhập ở đây" readonly="true"/>
+								placeholder="Không được nhập ở đây" readonly="true" />
 						</div>
 						<div class="form-group col-lg-6">
 							<label for="firstName">First Name</label>
@@ -91,7 +91,7 @@
 								placeholder="Nhập password" />
 						</div>
 
-						<div class="col-12 text-center fs-3">
+						<div class="col-12 text-center fs-3 mb-3">
 							<div class="form-check form-check-inline">
 								<form:radiobutton path="isEnabled" value="true"
 									cssClass="form-check-input" />
@@ -105,14 +105,14 @@
 						</div>
 
 
-						<div class="text-center">
+						<div class="text-center ">
 							<div class="button-group">
 								<button type="submit" formaction="/user/update"
-									class="btn btn-primary text-uppercase" ${dis}>Update Your
-									Profile</button>
+									class="btn btn-primary text-uppercase" ${dis}>Update
+									Your Profile</button>
 								<button type="submit" formaction="/user/delete/${id}"
-									class="btn btn-primary text-uppercase" ${dis}>Delete Your
-									Account</button>
+									class="btn btn-primary text-uppercase" ${dis}>Delete
+									Your Account</button>
 								<button type="submit" formaction="/hoanghamobile/account"
 									class="btn btn-primary text-uppercase">Reset</button>
 							</div>
@@ -129,6 +129,17 @@
 		</div>
 
 		<div class="container">
+			<form method="post" action="/hoanghamobile/account/search">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control rounded bg-white text-dark"
+						placeholder="Nhập Email để tìm kiếm" name="search" value="${search}">
+					<div class="input-group-append">
+						<button class="input-group-text btn btn-primary rounded-right"
+							type="submit">Search</button>
+					</div>
+				</div>
+			</form>
+
 			<table class="table table-hover bg-white text-dark">
 				<tr>
 					<th>First Name</th>

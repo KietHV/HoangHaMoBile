@@ -23,5 +23,7 @@ public interface UserRepository extends JpaRepository<Users, Long> {
 	@Modifying
     @Query(value = "UPDATE Users u SET u.firstName = :firstName, u.lastName = :lastName, u.email = :email, u.password = :password, u.isEnabled = :isEnabled WHERE u.id = :id")
     void updateUserById(Long id, String firstName, String lastName, String email, String password, Boolean isEnabled);
+
+	List<Users> findAllByemailContainingIgnoreCase(String keywords);
 	
 }
