@@ -12,9 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +25,10 @@ import com.java5.Asm.Repository.ProductRepository;
 import com.java5.Asm.Service.ParamService;
 import com.java5.Asm.Service.ShoppingCartService;
 
+
+
 @Controller
+@Validated
 public class ProductController {
 	
 	@Autowired
@@ -66,7 +70,7 @@ public class ProductController {
 	public String FindProduct(Model model, @RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam("p") Optional<Integer> p) {
 
-		Pageable pageble = PageRequest.of(p.orElse(0), 15);
+		Pageable pageble = PageRequest.of(p.orElse(0), 10);
 		List<Product> items = dao.findProduct("%" + keyword + "%");
 		Page<Product> items2 = dao.findAllByNameProduct("%" + keyword + "%", pageble);
 
@@ -76,6 +80,20 @@ public class ProductController {
 
 		return "product/findproduct";
 	}
+	@RequestMapping("/hoanghamobile/findproduct1")
+	public String findProduct1(Model model, @RequestParam("keyword") String keyword,
+            @RequestParam(value = "p", required = false) Optional<Integer> p) {
+
+		List<Product> items = dao.findAllBynameProductContainingIgnoreCase(keyword);
+		System.out.println(items.toString());
+		model.addAttribute("itemlistproduct", items);
+		model.addAttribute("keyword", keyword);
+
+		return "admin/products";
+	}
+
+
+	
 
 	@GetMapping("/hoanghamobile/edit-product")
 	public String EditProdcut(Model model, @RequestParam("id") Long id) {
@@ -111,14 +129,16 @@ public class ProductController {
 		return "product/productDetail";
 	}
 	
-	
 	@RequestMapping("/hoanghamobile/add-product")
-	public String addProduct(Model model, @ModelAttribute("item") Product items) {
-		Date currentDate = new Date();
-		items.setDate(currentDate);
-		dao.save(items);
-		model.addAttribute("successMessage", "Product created successfully!");
-		return "redirect:/hoanghamobile/products";
+	public String addProduct(@Validated @ModelAttribute("item") Product items, BindingResult result, Model model) {
+	    if (result.hasErrors()) {
+	        model.addAttribute("validationErrors", result.getAllErrors());
+	        return "admin/add-product";
+	    }
+	    Date currentDate = new Date();
+	    items.setDate(currentDate);
+	    dao.save(items);
+	    return "redirect:/hoanghamobile/products";
 	}
 
 }

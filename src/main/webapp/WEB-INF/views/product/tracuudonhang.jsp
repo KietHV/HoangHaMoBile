@@ -308,10 +308,15 @@
 					<p class=""
 						style="font-size: 30px; margin-top: 10px; margin-left: 350px">Trạng Thái Đơn Hàng :  ${status}</p>
 				</div>
+
 					<div class="container row">
 						
 						<div class="col-6 border">
-							<table class="giohang table table-hover">
+					
+					<div class="container mt-5"
+						style="background-color: white; border-radius: 10px; box-shadow: 0 4px 6px #00000029;">
+						<table class="giohang table table-hover">
+
 							<tr>
 							 <th>Order ID</th>
             <th>Product Name</th>
@@ -354,6 +359,7 @@
 
 				</tr>
 			</table>
+						</div>
 						</div>
 						
 						<div class="col-6  border">

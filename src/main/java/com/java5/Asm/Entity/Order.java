@@ -22,6 +22,7 @@ import lombok.Setter;
 @Table(name = "order_table")
 public class Order {
 	 @Id
+	 
 	 private String idOrder;
 	 private double Total;
 	 private Date date;

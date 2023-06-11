@@ -44,6 +44,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query("DELETE FROM Product p WHERE p.idProduct = ?1")
 	void deleteProduct(Long id);
 	
+	List<Product> findAllBynameProductContainingIgnoreCase(String keywords);
+	
 	
 	
 
