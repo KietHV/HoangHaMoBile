@@ -44,7 +44,7 @@ public class RegistrationController {
 		return "login/registration";
 	}
 
-    @PostMapping("/register")
+    @PostMapping("/hoanghamobile/register")
     public String registerUser(@ModelAttribute("user") RegistrationRequest registration, HttpServletRequest request) {
     	System.out.println(registration.getLastName());
         Users user = userService.registerUser(registration);
@@ -54,7 +54,7 @@ public class RegistrationController {
 
 
     
-    @GetMapping("/verifyEmail")
+    @GetMapping("/hoanghamobile/verifyEmail")
     public String verifyEmail(@RequestParam("token") String token) {
         Optional<VerificationToken> theToken = tokenService.findByToken(token);
         if (theToken.isPresent() && theToken.get().getUser().getIsEnabled()) {
@@ -72,51 +72,51 @@ public class RegistrationController {
     }
 
 
-	@GetMapping("/forgot-password-request")
+	@GetMapping("/hoanghamobile/forgot-password-request")
 	public String forgotPasswordForm() {
-		return "forgot-password-form";
+		return "login/forgot-password-form";
 	}
 
-	@PostMapping("/forgot-password")
+	@PostMapping("hoanghamobile/forgot-password")
 	public String resetPasswordRequest(HttpServletRequest request, Model model) {
 		String email = request.getParameter("email");
 		Optional<Users> user = userService.findByEmail(email);
 		if (user.isEmpty()) {
-			return "redirect:/registration/forgot-password-request?not_fond";
+			return "redirect:/hoanghamobile/forgot-password-request?not_fond";
 		}
 		String passwordResetToken = UUID.randomUUID().toString();
 		passwordResetTokenService.createPasswordResetTokenForUser(user.get(), passwordResetToken);
 		// send password reset verification email to the user
-		String url = UrlUtil.getApplicationUrl(request) + "/registration/password-reset-form?token="
+		String url = UrlUtil.getApplicationUrl(request) + "/hoanghamobile/password-reset-form?token="
 				+ passwordResetToken;
 		try {
 			eventListener.sendPasswordResetVerificationEmail(url);
 		} catch (MessagingException | UnsupportedEncodingException e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "redirect:/registration/forgot-password-request?success";
+		return "redirect:/hoanghamobile/forgot-password-request?success";
 	}
 
-	@GetMapping("/password-reset-form")
+	@GetMapping("/hoanghamobile/password-reset-form")
 	public String passwordResetForm(@RequestParam("token") String token, Model model) {
 		model.addAttribute("token", token);
-		return "password-reset-form";
+		return "login/password-reset-form";
 	}
 
-	@PostMapping("/reset-password")
+	@PostMapping("/hoanghamobile/reset-password")
 	public String resetPassword(HttpServletRequest request) {
 		String theToken = request.getParameter("token");
 		String password = request.getParameter("password");
 		String tokenVerificationResult = passwordResetTokenService.validatePasswordResetToken(theToken);
 		if (!tokenVerificationResult.equalsIgnoreCase("valid")) {
-			return "redirect:/error?invalid_token";
+			return "redirect:/hoanghamobile/error?invalid_token";
 		}
 		Optional<Users> theUser = passwordResetTokenService.findUserByPasswordResetToken(theToken);
 		if (theUser.isPresent()) {
 			passwordResetTokenService.resetPassword(theUser.get(), password);
-			return "redirect:/login?reset_success";
+			return "redirect:/hoanghamobile/login?reset_success";
 		}
-		return "redirect:/error?not_found";
+		return "redirect:/hoanghamobile/error?not_found";
 	}
 
 

@@ -49,17 +49,17 @@
 									value="<c:out value="${user.firstName}"/>" placeholder="Enter First Name">
 							</div>
 							<div class="form-group">
-								<input type="text" id="firstName" autofocus="autofocus"
+								<input type="text" id="lastName" autofocus="autofocus"
 									class="form-control" required name="lastName"
 									value="<c:out value="${user.lastName}"/>" placeholder="Enter Last Name">
 							</div>
 							<div class="form-group">
-								<input type="text" id="firstName" autofocus="autofocus"
+								<input type="text" id="email" autofocus="autofocus"
 									class="form-control" required name="email"
 									value="<c:out value="${user.email}"/>"placeholder="Enter Email">
 							</div>
 							<div class="form-group">
-								<input type="text" id="firstName" autofocus="autofocus"
+								<input type="text" id="password" autofocus="autofocus"
 									class="form-control" required name="password"
 									value="<c:out value="${user.password}"/>" placeholder="Enter Password">
 							</div>
