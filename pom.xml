@@ -95,31 +95,27 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-<<<<<<< HEAD
-=======
-<dependency>
-    <groupId>com.h2database</groupId>
-    <artifactId>h2</artifactId>
-    <version>2.1.214</version><!--$NO-MVN-MAN-VER$-->
-    <scope>test</scope>
-</dependency>
 
-<dependency>
-    <groupId>com.querydsl</groupId>
-    <artifactId>querydsl-jpa</artifactId>
-    <version>4.1.3</version><!--$NO-MVN-MAN-VER$-->
-</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>2.1.214</version><!--$NO-MVN-MAN-VER$-->
+			<scope>test</scope>
+		</dependency>
 
-	    <!-- Thêm phụ thuộc Spring Boot Actuator -->
-	    <dependency>
-	        <groupId>org.springframework.boot</groupId>
-	        <artifactId>spring-boot-starter-actuator</artifactId>
-	    </dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<version>4.1.3</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
 
+		<!-- Thêm phụ thuộc Spring Boot Actuator -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
 
-	
->>>>>>> 80df6fe66a8b20552b85974577d249dbd7d72a25
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
