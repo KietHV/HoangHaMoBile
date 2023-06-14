@@ -308,35 +308,15 @@
 					<p class=""
 						style="font-size: 30px; margin-top: 10px; margin-left: 350px">Trạng Thái Đơn Hàng :  ${status}</p>
 				</div>
-					<div class="container">
-						<h2>Client Form</h2>
-						<form>
-							<div class="form-group">
-								<label for="fullName">Full Name</label> <input
-									Class="form-control" id="fullName" value="${cl.fullName}"
-									placeholder="Enter full name" />
-							</div>
-							<div class="form-group">
-								<label for="email">Email</label> <input type="email"
-									class="form-control" id="email" placeholder="Enter email" value="${cl.email}" />
-									 
-							</div>
-							<div class="form-group">
-								<label for="address">Address</label> <input type="text"
-									class="form-control" id="address" placeholder="Enter address"  value="${cl.address}"/>
-							</div>
-							<div class="form-group">
-								<label for="phoneNumber">Phone Number</label> <input type="text"
-									class="form-control" id="phoneNumber"
-									placeholder="Enter phone number" value="${cl.phone_number}"/> 
 
-							</div>
-						</form>
-					</div>
+					<div class="container row">
+						
+						<div class="col-6 border">
 					
 					<div class="container mt-5"
 						style="background-color: white; border-radius: 10px; box-shadow: 0 4px 6px #00000029;">
 						<table class="giohang table table-hover">
+
 							<tr>
 							 <th>Order ID</th>
             <th>Product Name</th>
@@ -379,6 +359,40 @@
 
 				</tr>
 			</table>
+						</div>
+						</div>
+						
+						<div class="col-6  border">
+							<h2>Client Form</h2>
+							<form>
+								<div class="form-group">
+									<label for="fullName">Full Name</label> <input
+										Class="form-control" id="fullName" value="${cl.fullName}"
+										placeholder="Enter full name" />
+								</div>
+								<div class="form-group">
+									<label for="email">Email</label> <input type="email"
+										class="form-control" id="email" placeholder="Enter email" value="${cl.email}" /> 
+								</div>
+								<div class="form-group">
+									<label for="address">Address</label> <input type="text"
+										class="form-control" id="address" placeholder="Enter address"  value="${cl.address}"/>
+								</div>
+								<div class="form-group">
+									<label for="phoneNumber">Phone Number</label> <input type="text"
+										class="form-control" id="phoneNumber"
+										placeholder="Enter phone number" value="${cl.phone_number}"/> 
+	
+								</div>
+							</form>
+						</div>
+					
+						
+					</div>
+					
+					<div class="container mt-5"
+						style="background-color: white; border-radius: 10px; box-shadow: 0 4px 6px #00000029;">
+						
 
 
 					</div>

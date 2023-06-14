@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java5.Asm.Entity.Product;
 import com.java5.Asm.Entity.Users;
@@ -25,6 +26,14 @@ public class HomeController {
 	public String login(){
 		return "login/login";
 	}
+//	@GetMapping("/hoanghamobile/login")
+//	public String login(@RequestParam("email") String email) {
+//	    if (email.contains("@edu.com.vn")) {
+//	        return "admin/account"; // Trả về trang admin nếu email có định dạng @edu.com.vn
+//	    } else {
+//	        return "redirect:/hahoangmobile"; // Chuyển hướng đến trang /hahoangmobile nếu email không có định dạng @edu.com.vn
+//	    }
+//	}
 
 	@RequestMapping("/hoanghamobile/addproduct")
 	public String addProduct( @ModelAttribute("item") Product items) {

@@ -95,6 +95,16 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+<<<<<<< HEAD
+=======
+
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>2.1.214</version><!--$NO-MVN-MAN-VER$-->
+    <scope>test</scope>
+</dependency>
+>>>>>>> d72346bc6a7c4474ee73353864f19e7cb4583050
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -116,6 +126,7 @@
 		</dependency>
 
 
+<<<<<<< HEAD
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -128,6 +139,8 @@
 			<artifactId>querydsl-jpa</artifactId>
 			<version>4.1.3</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
+=======
+>>>>>>> d72346bc6a7c4474ee73353864f19e7cb4583050
 
 
 		<dependency>
